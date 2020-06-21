@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+  <title>Memo App</title>
+  <style>
+    /* border-box */
+    
+    html {
+      box-sizing: border-box;
+    }
+    
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+    
+    body {
+      font: 15px/1.5 Arial, Helvatica, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: antiquewhite;
+      color: #555;
+    }
+    
+    li {
+      list-style-type: none;
+    }
+    
+    .container {
+      width: 80%;
+      margin: auto;
+    }
+    
+    header {
+      background-color: #ccc;
+      min-height: 70px;
+    }
+    
+    header h1 {
+      margin: 0;
+      padding-top: 10px;
+    }
+    
+    ul#memos {
+      padding: 0;
+    }
+    
+    .memo {
+      max-width: 500px;
+      margin: 10px auto;
+      padding: 10px;
+      color: #333;
+      background-color: thistle;
+    }
+    
+    form {
+      max-width: 500px;
+      margin: 10px auto;
+    }
+    
+    input[type="text"] {
+      display: block;
+      padding: 4px;
+      height: 38px;
+      width: 250px;
+    }
+    
+    textarea {
+      width: 100%;
+      padding: 4px;
+      height: 100px;
+      display: block;
+    }
+    
+    .button {
+      display: block;
+      padding: 0 20px 0 20px;
+      margin-top: 10px;
+      height: 38px;
+      width: 250px;
+      background-color: blueviolet;
+      color: #ffffff;
+      border: 0;
+      font-size: 15px;
+      border-radius: 5px;
+    }
+    
+    span::after {
+      content: " ";
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>memo App</h1>
+    </div>
+  </header>
+  <div class="container">
+    <form>
+      <label>Title</label>
+      <input type="text" placeholder="ここにタイトル" id="title">
+      <label>Main</label>
+      <textarea placeholder="" id="main_content"></textarea>
+      <input type="submit" value="Submit" class="button" id="submit">
+    </form>
+    <ul id="memos">
+      <li class="memo">
+        <h2>ここにタイトル</h2>
+        <p>
+          <span class="date">2016年5月9日</span> 明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。
+        </p>
+        <!-- <a href="#" class="btn">&gt;もっと見る</a> -->
+      </li>
+    </ul>
+  </div>
+  <script>
+    document.getElementById('main_content').setAttribute('placeholder',
+      '明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだっ.....');
+    let btn = document.getElementById('submit');
+
+    btn.addEventListener('click', addList);
+
+    function addList(e) {
+      e.preventDefault();
+      /*
+      <li class="memo">
+        <h2>ここにタイトル</h2>
+        <p>
+          <span class="date">2016年5月9日</span> 明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。
+        </p>
+        <!-- <a href="#" class="btn">&gt;もっと見る</a> -->
+      </li>
+      */
+
+      let title = document.getElementById('title');
+      let main = document.getElementById('main_content');
+
+
+      let memosList = document.getElementById('memos');
+
+      let li = document.createElement('li');
+      li.className = "memo";
+
+      // add h2
+      let head = document.createElement('h2');
+      head.appendChild(document.createTextNode(title.value));
+      li.appendChild(head);
+
+      // add span
+      let span = document.createElement('span');
+      span.appendChild(document.createTextNode(formatNowDate()));
+
+      // add paragraph
+      let p = document.createElement('p');
+      p.appendChild(span);
+      p.appendChild(document.createTextNode(main.value));
+      li.appendChild(p);
+
+      memosList.appendChild(li);
+
+    }
+
+
+    function formatNowDate() {
+      let now = new Date();
+      return now.getFullYear() + "年" +
+        twoDigit((now.getMonth() + 1)) + "月" +
+        twoDigit(now.getDate()) + "日 " +
+        twoDigit(now.getHours()) + ":" +
+        twoDigit(now.getMinutes()) + ":" +
+        twoDigit(now.getSeconds());
+
+      function twoDigit(num) {
+        return ("0" + num).slice(-2);
+      }
+
+    }
+  </script>
+</body>
+
+</html>
