@@ -141,12 +141,13 @@
       </li>
       */
 
+      // form inputs
       let title = document.getElementById('title');
       let main = document.getElementById('main_content');
-
-
+      // the list which new memo added to
       let memosList = document.getElementById('memos');
 
+      // new memo
       let li = document.createElement('li');
       li.className = "memo";
 
@@ -155,7 +156,7 @@
       head.appendChild(document.createTextNode(title.value));
       li.appendChild(head);
 
-      // add span
+      // create span
       let span = document.createElement('span');
       span.appendChild(document.createTextNode(formatNowDate()));
 
