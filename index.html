@@ -341,7 +341,37 @@
     closeBtn.addEventListener('click', closeModal);
     window.addEventListener('click', clickOutSide);
 
-    function openModal() {
+    // Four variables below will be used in two function openModal, updateItem.
+    let title_before_update;
+    let main_content_before_update;
+    let updateForm_title;
+    let updateForm_main_content;
+
+    function openModal(e) {
+      /*
+      <li class="memo">
+        <h2>ここにタイトル</h2>
+        <p>
+          <span class="date">2016年5月9日</span> 明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。
+        </p>
+        <button>
+        ...
+        ...
+      </li>
+      */
+
+      // get <h2>'s text'
+      title_before_update = e.target.parentElement.firstElementChild;
+      // get only <p>'s text but not <span>'s date.
+      main_content_before_update = e.target.parentElement.firstElementChild.nextElementSibling.childNodes[2];
+
+
+      updateForm_title = document.querySelector('#updateMemo input[type="text"]');
+      updateForm_main_content = document.querySelector('#updateMemo textarea');
+
+      // copy the created memo before.
+      updateForm_title.value = title_before_update.textContent;
+      updateForm_main_content.value = main_content_before_update.textContent;
 
       modal.style.display = 'block';
     }
@@ -354,6 +384,20 @@
       if (e.target == modal) {
         modal.style.display = 'none';
       }
+    }
+
+    let update_submit = document.querySelector('#updateMemo #submit');
+
+    update_submit.addEventListener('click', updateItem);
+
+    function updateItem(e) {
+      e.preventDefault();
+
+      title_before_update.textContent = updateForm_title.value; // used in openModal, updateItem
+      main_content_before_update.textContent = updateForm_main_content.value; // used in openModal, updateItem
+
+      modal.style.display = 'none';
+
     }
   </script>
 </body>
