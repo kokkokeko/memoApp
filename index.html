@@ -276,6 +276,7 @@
       // add update button
       let updateBtn = document.createElement('button');
       updateBtn.classList.add("updateBtn", "update");
+      updateBtn.id = "modalBtn";
       updateBtn.appendChild(document.createTextNode("update"));
       li.appendChild(updateBtn);
 
@@ -333,11 +334,12 @@
 
 
     let modal = document.getElementById('simple_modal');
-    let modalBtn = document.getElementById('modalBtn');
+    // let modalBtn = document.getElementById('modalBtn');
     let closeBtn = document.getElementsByClassName('closeBtn')[0];
 
 
-    modalBtn.addEventListener('click', openModal);
+    // modalBtn.addEventListener('click', openModal);
+    memosList.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
     window.addEventListener('click', clickOutSide);
 
@@ -348,32 +350,41 @@
     let updateForm_main_content;
 
     function openModal(e) {
-      /*
-      <li class="memo">
-        <h2>ここにタイトル</h2>
-        <p>
-          <span class="date">2016年5月9日</span> 明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。
-        </p>
-        <button>
-        ...
-        ...
-      </li>
-      */
+      console.log('openmodal');
+      // TypeError: main_content_before_update is undefined
+      // Cause:
+      // The text nodes of whitespace around tags are not added when creating memos.
+      // There is no space between delete button and update button.
 
-      // get <h2>'s text'
-      title_before_update = e.target.parentElement.firstElementChild;
-      // get only <p>'s text but not <span>'s date.
-      main_content_before_update = e.target.parentElement.firstElementChild.nextElementSibling.childNodes[2];
+      if (e.target.classList.contains('update')) {
+
+        /*
+        <li class="memo">
+          <h2>ここにタイトル</h2>
+          <p>
+            <span class="date">2016年5月9日</span> 明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。
+          </p>
+          <button>
+          ...
+          ...
+        </li>
+        */
+
+        // get <h2>'s text'
+        title_before_update = e.target.parentElement.firstElementChild;
+        // get only <p>'s text but not <span>'s date.
+        main_content_before_update = e.target.parentElement.firstElementChild.nextElementSibling.childNodes[2];
 
 
-      updateForm_title = document.querySelector('#updateMemo input[type="text"]');
-      updateForm_main_content = document.querySelector('#updateMemo textarea');
+        updateForm_title = document.querySelector('#updateMemo input[type="text"]');
+        updateForm_main_content = document.querySelector('#updateMemo textarea');
 
-      // copy the created memo before.
-      updateForm_title.value = title_before_update.textContent;
-      updateForm_main_content.value = main_content_before_update.textContent;
+        // copy the created memo before.
+        updateForm_title.value = title_before_update.textContent;
+        updateForm_main_content.value = main_content_before_update.textContent;
 
-      modal.style.display = 'block';
+        modal.style.display = 'block';
+      }
     }
 
     function closeModal() {
