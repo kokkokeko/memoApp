@@ -255,6 +255,8 @@
       // add h2
       let head = document.createElement('h2');
       head.appendChild(document.createTextNode(title.value));
+
+      li.appendChild(document.createTextNode('\n        '));
       li.appendChild(head);
 
       // create span
@@ -263,14 +265,17 @@
 
       // add paragraph
       let p = document.createElement('p');
+      p.appendChild(document.createTextNode('\n        '));
       p.appendChild(span);
       p.appendChild(document.createTextNode(main.value));
+      li.appendChild(document.createTextNode('\n        '));
       li.appendChild(p);
 
       // add delete button
       let delBtn = document.createElement('button');
       delBtn.classList.add("delBtn", "delete");
       delBtn.appendChild(document.createTextNode("delete"));
+      li.appendChild(document.createTextNode('\n        '));
       li.appendChild(delBtn);
 
       // add update button
@@ -278,8 +283,10 @@
       updateBtn.classList.add("updateBtn", "update");
       updateBtn.id = "modalBtn";
       updateBtn.appendChild(document.createTextNode("update"));
+      li.appendChild(document.createTextNode('\n        '));
       li.appendChild(updateBtn);
 
+      li.appendChild(document.createTextNode('\n        '));
       memosList.appendChild(li);
 
     }
@@ -350,12 +357,6 @@
     let updateForm_main_content;
 
     function openModal(e) {
-      console.log('openmodal');
-      // TypeError: main_content_before_update is undefined
-      // Cause:
-      // The text nodes of whitespace around tags are not added when creating memos.
-      // There is no space between delete button and update button.
-
       if (e.target.classList.contains('update')) {
 
         /*
