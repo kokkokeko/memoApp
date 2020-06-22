@@ -36,6 +36,8 @@
     .container {
       width: 80%;
       margin: auto;
+      /* flow-root: clearfix float */
+      display: flow-root;
     }
     
     header {
@@ -43,9 +45,20 @@
       min-height: 70px;
     }
     
-    header h1 {
+    header #header_title {
+      float: left;
+    }
+    
+    header #header_title h1 {
       margin: 0;
       padding-top: 10px;
+    }
+    
+    header #filter {
+      display: block;
+      padding: 4px;
+      height: 38px;
+      width: 250px;
     }
     
     ul#memos {
@@ -111,7 +124,9 @@
       <div id="header_title">
         <h1>memo App</h1>
       </div>
-      <input type="text" id="filter" placeholder="Search memos...">
+      <div style="float: right; padding:15px 0;">
+        <input type="text" id="filter" placeholder="Search memos...">
+      </div>
     </div>
   </header>
   <div class="container">
