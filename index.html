@@ -112,6 +112,13 @@
       font-size: 15px;
     }
     
+    .updateBtn {
+      background-color: white;
+      color: rgb(129, 129, 2);
+      border: 1px solid rgb(129, 129, 2);
+      font-size: 15px;
+    }
+    
     span::after {
       content: " ";
     }
@@ -145,6 +152,7 @@
         </p>
         <!-- <span style="color: #0095ff">&gt;もっと見る</span> -->
         <button class="delBtn delete">delete</button>
+        <button class="updateBtn update">update</button>
       </li>
     </ul>
   </div>
@@ -194,9 +202,14 @@
       // add delete button
       let delBtn = document.createElement('button');
       delBtn.classList.add("delBtn", "delete");
-
       delBtn.appendChild(document.createTextNode("delete"));
       li.appendChild(delBtn);
+
+      // add update button
+      let updateBtn = document.createElement('button');
+      updateBtn.classList.add("updateBtn", "update");
+      updateBtn.appendChild(document.createTextNode("update"));
+      li.appendChild(updateBtn);
 
       memosList.appendChild(li);
 
