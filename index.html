@@ -92,6 +92,13 @@
       border-radius: 5px;
     }
     
+    .delBtn {
+      background-color: white;
+      color: blueviolet;
+      border: 1px solid blueviolet;
+      font-size: 15px;
+    }
+    
     span::after {
       content: " ";
     }
@@ -119,7 +126,7 @@
           <span class="date">2016年5月9日</span> 明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。
         </p>
         <!-- <span style="color: #0095ff">&gt;もっと見る</span> -->
-        <button style="background-color: white; color:blueviolet; border: 1px solid blueviolet; font-size:15px;" class="delete">delete</button>
+        <button class="delBtn delete">delete</button>
       </li>
     </ul>
   </div>
@@ -165,6 +172,12 @@
       p.appendChild(span);
       p.appendChild(document.createTextNode(main.value));
       li.appendChild(p);
+
+      // add delete button
+      let delBtn = document.createElement('button');
+      delBtn.classList = "delBtn delete";
+      delBtn.appendChild(document.createTextNode("delete"));
+      li.appendChild(delBtn);
 
       memosList.appendChild(li);
 
