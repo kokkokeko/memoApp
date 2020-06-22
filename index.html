@@ -175,7 +175,8 @@
 
       // add delete button
       let delBtn = document.createElement('button');
-      delBtn.classList = "delBtn delete";
+      delBtn.classList.add("delBtn", "delete");
+
       delBtn.appendChild(document.createTextNode("delete"));
       li.appendChild(delBtn);
 
