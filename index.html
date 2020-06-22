@@ -73,19 +73,26 @@
       background-color: thistle;
     }
     
-    form {
+    form#createMemo {
       max-width: 500px;
       margin: 10px auto;
     }
     
-    #createMemo input[type="text"] {
+    form#updateMemo {
+      width: 80%;
+      margin: 10px auto;
+    }
+    
+    #createMemo input[type="text"],
+    #updateMemo input[type="text"] {
       display: block;
       padding: 4px;
       height: 38px;
       width: 250px;
     }
     
-    #createMemo textarea {
+    #createMemo textarea,
+    #updateMemo textarea {
       width: 100%;
       padding: 4px;
       height: 100px;
@@ -205,8 +212,16 @@
   <div id="simple_modal" class="modal">
     <div class="modal-content">
       <span class="closeBtn">&times;</span>
-      <h2 style="text-align: center;">Update the selected memo</h2>
-
+      <div style="width:80%; margin:auto;">
+        <h2>Update the selected memo</h2>
+      </div>
+      <form id="updateMemo">
+        <label>Title</label>
+        <input type="text" placeholder="ここにタイトル" id="title">
+        <label>Main</label>
+        <textarea placeholder="" id="main_content"></textarea>
+        <input type="submit" value="Submit" class="button" id="submit">
+      </form>
     </div>
   </div>
   <script>
