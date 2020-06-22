@@ -119,6 +119,7 @@
           <span class="date">2016年5月9日</span> 明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだった。明後日は雨だった。
         </p>
         <!-- <span style="color: #0095ff">&gt;もっと見る</span> -->
+        <button style="background-color: white; color:blueviolet; border: 1px solid blueviolet; font-size:15px;" class="delete">delete</button>
       </li>
     </ul>
   </div>
@@ -126,6 +127,7 @@
     document.getElementById('main_content').setAttribute('placeholder',
       '明日は曇りだった。明後日は雨だった。今日は晴れていた。明日は曇りだっ.....');
     let btn = document.getElementById('submit');
+    let memosList = document.getElementById('memos');
 
     btn.addEventListener('click', addList);
 
@@ -144,8 +146,6 @@
       // form inputs
       let title = document.getElementById('title');
       let main = document.getElementById('main_content');
-      // the list which new memo added to
-      let memosList = document.getElementById('memos');
 
       // new memo
       let li = document.createElement('li');
@@ -184,6 +184,17 @@
         return ("0" + num).slice(-2);
       }
 
+    }
+
+    memosList.addEventListener('click', removeItem);
+
+    function removeItem(e) {
+      if (e.target.classList.contains('delete')) {
+        if (confirm("Are you sure?")) {
+          let li = e.target.parentElement;
+          memosList.removeChild(li);
+        }
+      }
     }
   </script>
 </body>
